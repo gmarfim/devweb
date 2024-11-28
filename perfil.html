@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirCnc - Configurações de Conta</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1a1b25;">
+    <div class="container">
+      <a class="navbar-brand text-warning" href="#">AirCnc</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Acomodações</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Experiências</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="far fa-star"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="far fa-user"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="list-group">
+          <div class="list-group-item bg-light">
+            <h5 class="mb-0">Configurações de conta</h5>
+          </div>
+          <a href="#" class="list-group-item list-group-item-action active">Informações Pessoais</a>
+          <a href="#" class="list-group-item list-group-item-action">Mudar E-Mail</a>
+          <a href="#" class="list-group-item list-group-item-action">Senha</a>
+        </div>
+      </div>
+
+      <!-- Main Form -->
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-4">Informações da conta</h4>
+            <form id="form">
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label">Primeiro Nome:</label>
+                  <input type="text" id="nome" class="form-control" placeholder="Insira seu primeiro nome">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Último Nome:</label>
+                  <input type="text" class="form-control" placeholder="Insira seu último nome">
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">E-mail:</label>
+                <input type="email" id="email" class="form-control" placeholder="Insira seu e-mail">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Número de telefone:</label>
+                <input type="tel" id="telefone" class="form-control" placeholder="Insira seu número de telefone">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Senha:</label>
+                <input type="password" id="senha" class="form-control" placeholder="Insira sua senha">
+              </div>
+
+              <div class="text-end">
+                <button type="submit" class="btn btn-warning">Salvar alterações</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // Seleciona o formulário
+    const form = document.getElementById('form');
+
+    // Adiciona o evento de submit
+    form.addEventListener('submit', async (event) => {
+      // Evita o comportamento padrão de recarregar a página
+      event.preventDefault();
+
+      // Obtém os dados do formulário
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const telefone = document.getElementById('telefone').value;
+      const senha = document.getElementById('senha').value;
+
+      // Cria o objeto com os dados
+      const formData = { nome, email, telefone, senha };
+
+      try {
+        // Faz a requisição POST utilizando Axios
+        const response = await axios.post('https://sua-api.com/endpoint', formData);
+
+        // Exibe a resposta do servidor
+        console.log('Dados enviados com sucesso:', response.data);
+        alert('Cadastro realizado com sucesso!');
+      } catch (error) {
+        // Lida com erros
+        console.error('Erro ao enviar os dados:', error);
+        alert('Ocorreu um erro ao realizar o cadastro.');
+      }
+    });
+  </script>
+</body>
+</html>
